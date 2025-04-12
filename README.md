@@ -68,8 +68,8 @@ graph LR
 
 ## 👥 Team Members
 
-| ![member1](![member1](https://github.com/user-attachments/assets/703180d0-df27-4199-93d6-0dfc9de8c944)
-) | ![감자도리](https://github.com/user-attachments/assets/2c685ee4-730b-4a0b-a155-ddd4121f8ccf) |
+| !([member1](https://github.com/user-attachments/assets/b09a374a-05ed-42d1-91a5-34fcd73e81eb)|
+| ![감자도리](https://github.com/user-attachments/assets/2c685ee4-730b-4a0b-a155-ddd4121f8ccf) |
 |:-----------------------:|:-----------------------:|
 | 변성용 (서비스 기획 / ) | 노호현 (서비스 기획/ )|
 | 절세 시뮬레이터         |  블로그 자동화   |
