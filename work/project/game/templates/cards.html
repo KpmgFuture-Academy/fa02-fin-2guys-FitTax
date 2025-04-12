@@ -1,0 +1,45 @@
+<!-- templates/cards.html -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>카드 선택</title>
+    <!-- Flask static 폴더의 style.css 로드 -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>문제 카드 선택</h1>
+    <p>총 {{ max_flips }}장의 카드 중 {{ flip_count }}장을 뒤집었습니다.</p>
+
+    <!-- 카드들을 그리드로 배치할 컨테이너 -->
+    <div class="card-board">
+        {% for card in cards %}
+            {% if not card.flipped and can_flip_more %}
+                <!-- 아직 뒤집지 않은 카드이면서 뒤집을 수 있는 횟수가 남았을 때 -->
+                <a href="{{ url_for('card', card_id=loop.index0) }}" style="text-decoration: none;">
+                    <div class="card">
+                        <span>문제 카드 {{ loop.index+1 }}</span>
+                    </div>
+                </a>
+            {% else %}
+                <!-- 이미 뒤집었거나, 더 이상 뒤집을 수 없는 카드 -->
+                <div class="card flipped">
+                    <span>문제 카드 {{ loop.index+1 }}</span>
+                    <div class="difficulty">
+                        {% if card.answered %}
+                            난이도: {{ card.difficulty }}
+                        {% else %}
+                            미답변
+                        {% endif %}
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+
+    <!-- 카드를 3장 모두 뒤집은 뒤에는 결과 페이지로 가는 버튼 표시 -->
+    {% if flip_count >= max_flips %}
+        <br>
+        <a href="{{ url_for('result') }}" class="button">결과 보기</a>
+    {% endif %}
+</body>
+</html>

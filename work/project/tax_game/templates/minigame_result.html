@@ -1,0 +1,31 @@
+{% extends 'base.html' %} {# 기본 레이아웃 사용 #}
+
+{% block title %}미니게임 결과{% endblock %}
+
+{% block content %}
+    <h2>📄 공제 자료 찾기 결과 📄</h2>
+
+    <div style="text-align: center; font-size: 1.5em; margin: 30px 0;">
+        당신은 <strong style="color: #007bff;">{{ score }}개</strong>의 공제 자료를 찾았습니다!
+    </div>
+
+    {# 간단한 메시지 또는 격려 문구 추가 가능 #}
+    {% if score >= 5 %}
+        <p style="text-align: center; color: green;">와우! 꼼꼼하시네요! 👍</p>
+    {% elif score >= 3 %}
+        <p style="text-align: center; color: orange;">조금만 더 찾아볼까요? 😉</p>
+    {% else %}
+        <p style="text-align: center; color: red;">연습이 더 필요하겠어요! 😊</p>
+    {% endif %}
+
+    <hr>
+    <div style="text-align: center; margin-top: 30px;">
+        <a href="{{ url_for('document_minigame') }}" class="btn" style="background-color: #ff9800; margin-right: 10px;">다시하기</a>
+        <a href="{{ url_for('index') }}" class="btn">메인 메뉴로</a>
+    </div>
+{% endblock %}
+
+{% block scripts %}
+    {# 이 페이지에서는 별도 스크립트 불필요 #}
+    {{ super() }} {# base.html의 스크립트는 그대로 포함 #}
+{% endblock %}

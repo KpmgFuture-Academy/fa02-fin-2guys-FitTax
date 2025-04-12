@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>네이버 지식인 자료 수집</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+<div class="container">
+  <h1>네이버 지식인 자료 수집</h1>
+
+  <!-- 검색 폼 -->
+  <form method="post" action="/">
+    <div class="form-row">
+      <label for="keyword">검색 키워드:</label>
+      <input type="text" id="keyword" name="keyword" placeholder="예: 청년 창업 세금" required>
+    </div>
+    <div class="form-row">
+      <label for="start_date">검색 시작일:</label>
+      <input type="date" id="start_date" name="start_date">
+    </div>
+    <div class="form-row">
+      <label for="end_date">검색 종료일:</label>
+      <input type="date" id="end_date" name="end_date">
+    </div>
+    <button type="submit">자료 수집하기</button>
+  </form>
+
+  <!-- 새로 수집된 결과 -->
+  {% if new_result_table %}
+    <h2>새로 수집된 결과 ({{ new_count }} 건)</h2>
+    <div class="result-table">
+      {{ new_result_table|safe }}
+    </div>
+  {% elif new_count == 0 and request.method == 'POST' %}
+    <p>검색 결과가 없습니다.</p>
+  {% endif %}
+
+  <!-- DB 전체 내용 -->
+  <h2>DB 전체 내용 ({{ db_count }} 건)</h2>
+  {% if db_result_table %}
+    <div class="result-table">
+      {{ db_result_table|safe }}
+    </div>
+  {% else %}
+    <p>DB에 저장된 자료가 없습니다.</p>
+  {% endif %}
+</div>
+</body>
+</html>

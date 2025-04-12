@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% block title %}세금 게임: 쫄지마!{% endblock %}
+{% block content %}
+    <h1>세금. 쫄지마</h1>
+    <p>개인사업자와 청년 창업자를 위한 세금 교육 게임</p>
+    <img src="{{ url_for('static', filename='images/main_banner.png') }}" alt="메인 배너" style="display: block; margin: 20px auto; max-width: 500px;"> {# 배너 크기 원복 #}
+
+    <div class="menu">
+        <h2>시나리오 선택하기</h2>
+        {% if scenarios %}
+            <ul>
+            {% for scenario in scenarios %}
+                <li>
+                    <a href="{{ url_for('scenario', scenario_id=scenario.id) }}" class="btn">
+                        {% if scenario.image_url %}
+                        <img src="{{ scenario.image_url }}" alt="" style="width: 50px; height: 25px; object-fit: cover; vertical-align: middle; margin-right: 10px; border-radius: 3px;">
+                        {% endif %}
+                        {{ scenario.title }}
+                    </a>
+                </li>
+            {% endfor %}
+            </ul>
+        {% else %}
+            <p>플레이할 수 있는 시나리오가 없습니다. 😭</p>
+            <p><code style="background-color: #eee; padding: 2px 5px; border-radius: 3px;">python dbcreate.py</code>를 실행하여 데이터베이스를 초기화해보세요.</p>
+        {% endif %}
+
+        <hr> {# 시나리오와 연습 게임 구분선 #}
+
+        {# --- 연습 게임 섹션 --- #}
+        <h2>연습 게임</h2>
+        <a href="{{ url_for('document_finder_practice') }}" class="btn" style="background-color: #ff9800;">📄 공제 자료 찾기 연습!</a>
+        {# -------------------- #}
+
+        <hr> {# 연습 게임과 튜토리얼 구분선 #}
+
+        <h2>튜토리얼 보기</h2>
+         {% if tutorials %}
+            <ul>
+            {% for tutorial in tutorials %}
+                <li><a href="{{ url_for('tutorial', tutorial_id=tutorial.id) }}" class="btn">{{ tutorial.title }}</a></li>
+            {% endfor %}
+            </ul>
+        {% else %}
+            <p>볼 수 있는 튜토리얼이 없습니다.</p>
+        {% endif %}
+    </div>
+{% endblock %}

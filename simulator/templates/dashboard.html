@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>절세 시뮬레이션 결과</title>
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #f4f6f8;
+            color: #333;
+            padding: 50px;
+            margin: 0;
+            text-align: center;
+        }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            text-align: left;
+        }
+        h1 {
+            font-size: 2.4em;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+        .section {
+            margin-bottom: 30px;
+        }
+        .section p {
+            line-height: 1.8;
+            font-size: 16px;
+            margin: 5px 0;
+        }
+        .section strong {
+            font-size: 18px;
+            display: block;
+            margin-bottom: 10px;
+            color: #222;
+        }
+        .highlight {
+            color: #2c7be5;
+            font-weight: bold;
+        }
+        hr {
+            border: none;
+            border-top: 1px solid #e0e0e0;
+            margin: 25px 0;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 6px;
+            font-size: 14px;
+            text-align: center;
+        }
+        th {
+            background-color: #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>절세 시뮬레이션 결과</h1>
+
+    <div class="section">
+        <strong>👤 사용자 정보</strong>
+        <p>ㆍ나이: <span class="highlight">{{ user.age }}</span>세</p>
+        <p>ㆍ소득: <span class="highlight">{{ user.income }}</span>원</p>
+        <p>ㆍ소득 유형: <span class="highlight">{{ user.income_type }}</span></p>
+    </div>
+
+    <hr>
+
+    <div class="section">
+        <strong>💸 현재 절세금액 결과</strong>
+        <p>ㆍ연간 세액공제 합계: <span class="highlight">{{ result['세액공제_합계'] }}</span>원</p>
+        <p>ㆍ연간 소득공제 합계: <span class="highlight">{{ result['소득공제_합계'] }}</span>원</p>
+        <p>ㆍISA 절세효과: <span class="highlight">{{ result['ISA_절세효과'] }}</span></p>
+        <p>ㆍ향후 5년 절세 예상 총액: <span class="highlight">{{ result['향후_5년_예상절세액'] }}</span>원</p>
+    </div>
+
+    <hr>
+
+    <div class="section">
+        <strong>📌 현재 월 납입 전략 제안 (예상 여유자금 기반)</strong>
+        <p>ㆍIRP 월 납입 가능액: <span class="highlight">{{ result['추가_납입_권장']['irp'] // 12 }}</span>원/월</p>
+        <p>ㆍ연금저축 월 납입 가능액: <span class="highlight">{{ result['추가_납입_권장']['pension'] // 12 }}</span>원/월</p>
+        <p>ㆍ노란우산공제 추가납입: <span class="highlight">{{ result['추가_납입_권장']['yellow_umbrella'] }}</span></p>
+    </div>
+
+    <hr>
+
+    <div class="section">
+        <strong>🎯 선택한 전략에 따른 월 납입 제안</strong>
+        <p>ㆍIRP 월 납입: <span class="highlight">{{ result['전략별_제안']['IRP'] }}</span>만원</p>
+        <p>ㆍ연금저축 월 납입: <span class="highlight">{{ result['전략별_제안']['연금저축'] }}</span>만원</p>
+        <p>ㆍ노란우산공제 월 납입: <span class="highlight">{{ result['전략별_제안']['노란우산'] }}</span>만원</p>
+    </div>
+
+    {% if recommended %}
+    <hr>
+    <div class="section">
+        <strong>🌟 전략 기반 추천 상품</strong>
+        {% for category, df in recommended.items() %}
+        <div class="section">
+            <p><strong>📌 {{ category }}</strong></p>
+            <table>
+                <thead>
+                    <tr>
+                        {% for col in df.columns %}
+                        <th>{{ col }}</th>
+                        {% endfor %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for row in df.values %}
+                    <tr>
+                        {% for val in row %}
+                        <td>
+                            {% if "http" in val|string %}
+                                <a href="{{ val }}" target="_blank">가입하기</a>
+                            {% else %}
+                                {{ val }}
+                            {% endif %}
+                        </td>
+                        {% endfor %}
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <div style="text-align:center; margin-top: 40px;">
+        <a href="/dashboard/products">
+            <button type="button" style="padding: 10px 20px; font-size: 16px; background-color: #28a745; color: white; border: none; border-radius: 6px;">
+                👉 상품 대시보드로 이동
+            </button>
+        </a>
+    </div>
+
+</div>
+</body>
+</html>

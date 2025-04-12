@@ -1,0 +1,120 @@
+{# templates/result.html #}
+{# 시나리오 결과 표시 페이지 (미니게임 결과는 여기에 표시되지 않음) #}
+{% extends 'base.html' %}
+{% block title %}게임 결과{% endblock %}
+
+{% block head %}
+<script>
+    // 숫자를 부드럽게 증가시키는 애니메이션 함수
+    function animateNumber(id, start, end, duration, unit) {
+        var element = document.getElementById(id);
+        if (!element) return; // 요소가 없으면 종료
+
+        var range = end - start;
+        // 시작값과 끝값이 같으면 즉시 표시하고 종료
+        if (range === 0) {
+             element.innerHTML = end.toLocaleString() + unit;
+             return;
+        }
+        var incrementDirection = end > start ? 1 : -1; // 증가/감소 방향
+        var stepTime = Math.abs(Math.floor(duration / range)); // 각 스텝 간 기본 시간
+        stepTime = Math.max(stepTime, 10); // 최소 스텝 시간 (너무 빠르지 않게)
+        stepTime = Math.min(stepTime, 50); // 최대 스텝 시간 (너무 느리지 않게)
+        var current = start;
+        var timer = setInterval(function() {
+            // 남은 거리와 남은 시간을 고려하여 스텝 크기 동적 계산 (부드러운 마무리)
+            let remainingDuration = duration - (performance.now() - startTime); // 남은 시간 추정
+            let remainingRange = Math.abs(end - current);
+            let stepIncrement = Math.ceil(remainingRange / (remainingDuration / stepTime));
+            stepIncrement = Math.max(1, stepIncrement); // 최소 1씩은 움직이도록
+
+            current += incrementDirection * stepIncrement;
+
+            // 목표치 도달 또는 초과 시 정리
+            if ((incrementDirection === 1 && current >= end) || (incrementDirection === -1 && current <= end)) {
+                current = end; // 정확히 목표치로 설정
+                clearInterval(timer);
+            }
+
+            element.innerHTML = current.toLocaleString() + unit; // 천 단위 콤마 및 단위 표시
+        }, stepTime);
+        // 애니메이션 시작 시간 기록
+        var startTime = performance.now();
+        // 초기값 표시
+        element.innerHTML = start.toLocaleString() + unit;
+    }
+
+    // 페이지 로드 완료 시 애니메이션 및 사운드 실행
+    window.onload = function() {
+        // 숫자 애니메이션 호출 (시작값 0, 목표값, 지속시간(ms), 단위)
+        animateNumber("revenue", 0, {{ revenue }}, 1000, "백만원");
+        animateNumber("expense", 0, {{ expense }}, 1000, "백만원"); // 미니게임 보너스 제외된 비용
+        animateNumber("net_income", 0, {{ net_income }}, 1500, "백만원");
+        animateNumber("tax", 0, {{ tax }}, 2000, "만원");
+        animateNumber("score", 0, {{ score }}, 1000, "점"); // 최종 점수 (랜덤 이벤트 포함)
+
+        // 성공 사운드 재생 (base.html 에 정의된 audio 요소 사용)
+        const successSound = document.getElementById('audio-success');
+        if (successSound) {
+            // 약간의 딜레이 후 재생 (애니메이션과 겹치지 않게)
+            setTimeout(() => {
+                // 재생 전 사운드 로드 상태 확인 또는 처음으로 되감기 (선택사항)
+                // successSound.load(); // 필요 시 다시 로드
+                successSound.currentTime = 0; // 처음부터 재생
+                successSound.play().catch(e => console.error("성공 사운드 재생 오류:", e));
+            }, 300); // 0.3초 후 재생
+        } else {
+             console.warn("성공 오디오 요소를 찾을 수 없습니다.");
+        }
+    }
+</script>
+{% endblock %}
+
+{% block content %}
+    <h2>게임 결과</h2>
+
+    {# 시나리오 이미지 표시 #}
+    {% if scenario_image_url %}
+        <img src="{{ scenario_image_url }}" alt="시나리오 이미지" style="max-width: 200px; margin-bottom: 20px; display: block; margin-left: auto; margin-right: auto; border-radius: 4px;">
+    {% endif %}
+
+    {# 결과 항목 표시 #}
+    <div class="result-item">매출: <span id="revenue">0</span>백만원</div>
+    <div class="result-item">선택한 비용 공제: <span id="expense">0</span>백만원</div> {# 미니게임 보너스 제외됨 #}
+    <div class="result-item">계산된 순소득(과세표준): <span id="net_income">0</span>백만원</div>
+    <div class="result-item">적용된 세율 구간: <span>{{ "%.2f"|format(tax_rate) }}%</span></div> {# 소수점 2자리 #}
+    <div class="result-item">예상 세금 부담: <span id="tax">0</span>만원</div>
+    <div class="result-item">획득 점수: <span id="score" class="positive" style="font-size:1.2em;">0</span>점</div> {# 최종 점수 #}
+
+    {# --- 미니게임 보너스 표시 부분 삭제됨 --- #}
+
+    {# 랜덤 이벤트 표시 영역 #}
+    {% if event_description %}
+    <div style="margin-top: 25px; padding: 15px; background-color: #fff3cd; border-left: 5px solid #ffeeba; border-radius: 4px; font-style: italic;">
+        <strong>✨ 깜짝 이벤트 발생! ✨</strong><br>
+        {{ event_description }}
+    </div>
+    {% endif %}
+
+    <hr style="margin-top: 25px;">
+
+    {# 피드백 메시지 #}
+    <p style="margin-bottom: 20px; line-height: 1.6;">{{ feedback }}</p> {# 랜덤 이벤트 점수 포함될 수 있음 #}
+
+    {# 비교 피드백 박스 #}
+    <div class="comparison-box">
+        <strong>만약 다른 선택을 했다면?</strong><br>
+        다른 선택 (비용 {{ alternative_expense }}백만원 공제) 시, 예상 세금은 <span>{{ alternative_tax }}만원</span>입니다.<br>
+        {% if tax_difference > 0 %}
+            이번 선택으로 <span class="positive">{{ tax_difference }}만원</span>의 세금을 절약했습니다! 👍
+        {% elif tax_difference < 0 %}
+            다른 선택지보다 <span class="negative">{{ -tax_difference }}만원</span>의 세금을 더 내게 되었습니다. 😢
+        {% else %}
+            두 선택지 간의 세금 차이는 없었습니다.
+        {% endif %}
+    </div>
+
+    <br>
+    {# 메인 메뉴 이동 버튼 #}
+    <a href="{{ url_for('index') }}" class="btn" style="margin-top: 20px;">메인 메뉴로</a>
+{% endblock %}

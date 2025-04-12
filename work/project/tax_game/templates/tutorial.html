@@ -1,0 +1,39 @@
+{% extends 'base.html' %}
+{% block title %}튜토리얼{% endblock %}
+{% block head %}
+<script>
+    function checkAnswer() {
+        var answer = document.getElementById("quiz").value;
+        var result = document.getElementById("result");
+        // 정답 비교 시 공백 제거 및 소문자 변환 등 고려
+        if(answer.trim().toLowerCase() === "{{ tutorial.quiz_answer }}".toLowerCase()) {
+            result.innerHTML = "<span style='color:green;'>정답입니다!</span>";
+        } else {
+            result.innerHTML = "<span style='color:red;'>오답입니다. 다시 시도해보세요.</span>";
+        }
+    }
+</script>
+{% endblock %}
+{% block content %}
+    <h2>{{ tutorial.title }}</h2>
+    <p style="line-height: 1.6;">{{ tutorial.content }}</p> {# 가독성 위해 line-height 추가 #}
+
+    {% if tutorial.image_url %}
+
+    <img src="{{ url_for('static', filename='images/tutorial.png') }}" alt="메인 배너" style="display: block; margin: 20px auto; max-width: 200px;">
+
+    {% endif %}
+
+    {% if tutorial.quiz_question %}
+    <hr>
+    <h3>퀴즈</h3>
+    <p>{{ tutorial.quiz_question }}</p>
+    <input type="text" id="quiz" placeholder="답 입력" style="padding: 8px; margin-right: 5px;">
+    <button onclick="checkAnswer()" class="btn" style="padding: 8px 15px;">정답 확인</button> {# 버튼에 btn 클래스 적용 #}
+    <div id="result" style="margin-top: 10px;"></div>
+    {% endif %}
+
+    <br>
+    <hr>
+    <a href="{{ url_for('index') }}" class="btn">메인 메뉴로</a>
+{% endblock %}

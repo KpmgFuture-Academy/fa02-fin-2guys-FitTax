@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>{% block title %}DB 관리자 모드{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='admin_style.css') }}">
+  <style>
+    /* 전체 초기화 */
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f9f9f9;
+    }
+
+    /* 헤더 */
+    header {
+      background-color: #333;
+      color: #fff;
+      padding: 15px 20px;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 1.4rem;
+    }
+
+    /* 좌측 사이드바 */
+    nav.sidebar {
+      background-color: #444;
+      width: 220px;
+      min-height: 100vh; /* 화면 전체 높이 */
+      float: left;       /* 왼쪽에 고정 */
+    }
+    nav.sidebar ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    nav.sidebar ul li {
+      border-bottom: 1px solid #555;
+    }
+    nav.sidebar ul li a {
+      display: block;
+      color: #fff;
+      text-decoration: none;
+      padding: 12px 20px;
+    }
+    nav.sidebar ul li a:hover {
+      background-color: #666;
+    }
+
+    /* 우측 메인 콘텐츠 영역 */
+    main {
+      margin-left: 220px; /* 좌측 사이드바 폭만큼 여백 */
+      padding: 20px;
+      min-height: 100vh;   /* 화면 전체 높이 */
+      box-sizing: border-box;
+      background-color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>DB 관리자 모드</h1>
+  </header>
+
+  <!-- 왼쪽 사이드바 메뉴 -->
+  <nav class="sidebar">
+    <ul>
+      <li><a href="/admin/db_integrity">DB 상태 및 정합성 검사</a></li>
+      <li><a href="/admin/view_tables">테이블 및 데이터 조회</a></li>
+      <li><a href="/admin/duplicate_removal">중복 데이터 제거</a></li>
+      <li><a href="/admin/sql_query">SQL 쿼리 실행 도구</a></li>
+      <li><a href="/admin/backup_restore">백업 및 복원 관리</a></li>
+      <li><a href="/admin/logs_stats">로그 및 통계</a></li>
+      <li><a href="/admin/settings">설정 및 사용자 관리</a></li>
+    </ul>
+  </nav>
+
+  <!-- 우측 메인 영역: 페이지별 내용은 block으로 교체 -->
+  <main>
+    {% block content %}
+    <!-- 이 영역을 각 페이지에서 override(확장)하여 사용 -->
+    {% endblock %}
+  </main>
+</body>
+</html>

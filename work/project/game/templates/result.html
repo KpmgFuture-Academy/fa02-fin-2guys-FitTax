@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>결과</title>
+</head>
+<body>
+    <h1>퀴즈 결과</h1>
+    <p>총 {{ total_questions }} 문제 중 {{ score }} 문제를 맞히셨습니다.</p>
+    <a href="{{ url_for('start_quiz') }}">다시 시작</a>
+    <a href="{{ url_for('index') }}">메인으로 돌아가기</a>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>로그 및 통계</title>
+  <a href="/admin">관리자 대시보드로 돌아가기</a>
+  <link rel="stylesheet" href="{{ url_for('static', filename='admin_style.css') }}">
+</head>
+<body>
+  <header>
+    <h1>로그 및 통계</h1>
+  </header>
+  <main>
+    {% if stats.error %}
+      <p>Error: {{ stats.error }}</p>
+    {% else %}
+      <h2>테이블별 레코드 수</h2>
+      <ul>
+        {% for table, count in stats.items() %}
+          <li>{{ table }}: {{ count }} 건</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+
+  </main>
+</body>
+</html>

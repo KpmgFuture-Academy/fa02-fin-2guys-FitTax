@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>세금 사전학습 - 용어 & 풀이</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        /* 사전학습 페이지 전용 추가 스타일 */
+        .pre-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .pre-header {
+            text-align: center;
+            font-size: 2em;
+            color: #007bff;
+            margin-bottom: 20px;
+        }
+        .section {
+            margin-bottom: 40px;
+        }
+        .section h2 {
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
+            color: #007bff;
+        }
+        .term-list {
+            list-style: none;
+            padding: 0;
+        }
+        .term-list li {
+            background: #f8f9fa;
+            margin: 10px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            cursor: pointer; /* 클릭 가능한 UI로 변경 */
+        }
+        .term-list li strong {
+            color: #dc3545;
+        }
+        .term-list li:hover {
+            background-color: #e2e6ea;
+        }
+        .pre-button {
+            display: block;
+            width: 250px;
+            margin: 0 auto;
+            text-align: center;
+            background-color: #28a745;
+            color: white;
+            padding: 15px;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        .pre-button:hover {
+            background-color: #1e7e34;
+        }
+
+        /* 모달(팝업) 스타일 */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: none; /* 처음에는 숨김 */
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            max-width: 600px;
+            text-align: center;
+        }
+        .modal-content h2 {
+            margin-bottom: 15px;
+        }
+        .close-btn {
+            margin-top: 20px;
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+        .close-btn:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="pre-container">
+        <h1 class="pre-header">세금 사전학습</h1>
+
+        <!-- 용어 섹션 -->
+        <div class="section" id="terms">
+            <h2>용어</h2>
+            <ul class="term-list">
+                <!-- '원천징수'를 클릭하면 모달이 뜨도록 data-story="원천징수" 속성 추가 -->
+                <li data-story="원천징수">
+                    <strong>원천징수</strong>: 지급 시 세금을 미리 떼어내는 제도
+                </li>
+                <li data-story="종합소득세">
+                    <strong>종합소득세</strong>: 한 해 동안의 모든 소득에 대해 부과하는 세금
+                </li>
+                <li data-story="세액공제">
+                    <strong>세액공제</strong>: 납부할 세금에서 일정 금액을 공제해 주는 제도
+                </li>
+                <li data-story="기본">
+                    <strong>소득공제</strong>: 과세표준을 줄여 실제 납부해야 하는 세금을 낮추는 제도
+                </li>
+                <li data-story="기본">
+                    <strong>4대 보험</strong>: 국민연금, 건강보험, 고용보험, 산재보험을 통칭
+                </li>
+            </ul>
+        </div>
+
+        <!-- 풀이 섹션 -->
+        <div class="section" id="explanations">
+            <h2>풀이</h2>
+            {% for item in data.explanations %}
+                <h3>{{ item.title }}</h3>
+                <p>{{ item.content }}</p>
+            {% endfor %}
+        </div>
+
+        <a href="{{ url_for('start_quiz') }}" class="pre-button">퀴즈 시작하러 가기 🚀</a>
+    </div>
+
+    <!-- 모달 구조 (공통 사용) -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-content" id="modalContent">
+            <h2 id="modalTitle">제목</h2>
+            <p id="modalBody">내용</p>
+            <a href="#" class="close-btn" id="closeModal">닫기</a>
+        </div>
+    </div>
+
+    <script>
+        // 스토리를 저장하는 객체 (원하는 만큼 추가 가능)
+        const storyData = {
+            '원천징수': {
+                title: '원천징수(흥부와놀부)',
+                body: `옛날 옛적, 흥부와 놀부가 살았어요.
+흥부는 열심히 일해서 품삯(월급)을 받으려 하면, 놀부가 "먼저 떼어놓을 돈이 있지!"라며 일부를 챙겨 가요.
+이 챙긴 돈이 바로 국가에 내야 할 세금이었답니다.
+즉, 월급을 받기 전에 세금을 미리 떼어놓는 것을 '원천징수'라고 해요.
+놀부가 "나중에 세금 내라"라고 하면 흥부가 깜빡할 수도 있지만, 먼저 떼어두면 깜빡할 일 없이 바로 납부가 되니까 편리하죠!`
+            },
+            '종합소득세': {
+                title: '종합소득세(흥부와놀부)',
+                body: `흥부는 여러 가지 일을 하며 다양한 수입을 벌었고, 놀부는 한 가지 일로 벌어들이는 돈이 있었죠.
+한 해가 지나면, 정부는 흥부가 번 모든 돈을 합쳐서 세금을 내도록 했는데,
+이것이 바로 "종합소득세"예요.
+즉, 한 해 동안 번 모든 소득을 모아 계산하여 세금을 부과하는 제도랍니다.
+흥부처럼 여러 수입이 많으면 세금 부담이 커지고, 놀부처럼 한 가지 수입이면 부담이 상대적으로 적은 것이죠.`
+            },
+            '세액공제': {
+                title: '세액공제(흥부와놀부)',
+                body: `흥부는 매년 세금 계산을 할 때, 정부로부터 "너는 일정 금액을 공제받을 수 있다"는 혜택을 받았어요.
+즉, 흥부가 내야 할 세금에서 일정 금액이 미리 깎여서 실제로 부담하는 세금이 줄어들었답니다.
+
+반면, 놀부는 그러한 혜택을 제대로 받지 못하거나, 혜택 금액이 적었어요.
+
+이처럼, 납부할 세금에서 미리 일정 금액을 빼주는 제도가 바로 '세액공제'예요.`
+            },
+            '기본정보': {
+                title: '기본정보......',
+                body: `해당 용어에는 별도의 재미있는 이야기가 없습니다. 😅`
+            }
+        };
+
+        const modalOverlay = document.getElementById('modalOverlay');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalBody = document.getElementById('modalBody');
+        const closeModalBtn = document.getElementById('closeModal');
+
+        // 용어 항목 클릭 시 모달 표시
+        document.querySelectorAll('.term-list li').forEach(item => {
+            item.addEventListener('click', () => {
+                const storyKey = item.dataset.story;
+                if(storyData[storyKey]) {
+                    modalTitle.innerText = storyData[storyKey].title;
+                    modalBody.innerText = storyData[storyKey].body.trim();
+                } else {
+                    // 해당 키가 없을 경우 기본 문구
+                    modalTitle.innerText = '알 수 없는 항목';
+                    modalBody.innerText = '해당 항목에 대한 이야기가 없습니다.';
+                }
+                modalOverlay.style.display = 'flex';
+            });
+        });
+
+        // 모달 닫기
+        closeModalBtn.addEventListener('click', (e) => {
+            e.preventDefault(); // a 태그 기본 동작 막기
+            modalOverlay.style.display = 'none';
+        });
+    </script>
+</body>
+</html>

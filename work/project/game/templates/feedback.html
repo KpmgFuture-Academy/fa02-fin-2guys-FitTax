@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>피드백</title>
+    <style>
+        body { font-family: sans-serif; }
+        h1 { color: #dc3545; }
+        p { margin-bottom: 15px; }
+        .correct { color: green; font-weight: bold; }
+        .incorrect { color: red; font-weight: bold; }
+        a { color: #007bff; text-decoration: none; }
+        a:hover { text-decoration: underline; }
+    </style>
+</head>
+<body>
+    <h1>피드백</h1>
+    {% if feedback.correct %}
+        <p class="correct">정답입니다! 🎉</p>
+    {% else %}
+        <p class="incorrect">아쉽지만 틀렸어요. 😥</p>
+        <p>정답은: {{ feedback.correct_answer }}</p>
+    {% endif %}
+    <p>💡 해설: {{ feedback.explanation }}</p>
+    <a href="{{ url_for('cards') }}">다음 문제 ▶️</a>
+</body>
+</html>

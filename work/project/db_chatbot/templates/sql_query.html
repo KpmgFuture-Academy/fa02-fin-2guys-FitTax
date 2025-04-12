@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% block title %}SQL 쿼리 실행 도구{% endblock %}
+
+{% block content %}
+  <h2>SQL 쿼리 실행 도구</h2>
+
+  <!-- 에러 메시지 표시 -->
+  {% if error %}
+    <p style="color: red;">Error: {{ error }}</p>
+  {% endif %}
+
+  <!-- 폼 시작 -->
+  <form method="post" style="margin-bottom: 20px;">
+    <!-- 테이블 선택 -->
+    <label for="selected_table">테이블 선택:</label><br>
+    <select name="selected_table" id="selected_table" onchange="this.form.submit()">
+      <option value="">-- 테이블 선택 --</option>
+      {% for tbl in tables %}
+        <option value="{{ tbl }}" {% if tbl == selected_table %}selected{% endif %}>{{ tbl }}</option>
+      {% endfor %}
+    </select>
+
+    <!-- 선택된 테이블의 컬럼 목록 표시 -->
+    {% if columns_for_selected %}
+      <p style="margin-top: 10px;">
+        선택된 테이블: <strong>{{ selected_table }}</strong>
+      </p>
+      <p>컬럼 목록:</p>
+      <ul>
+        {% for col in columns_for_selected %}
+          <li>{{ col }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+
+    <!-- 쿼리 입력 -->
+    <label for="query" style="margin-top: 10px; display: block;">쿼리:</label>
+    <textarea name="query" id="query" rows="5" cols="60" placeholder="SQL 쿼리를 입력하세요"
+              style="width: 100%; max-width: 600px;">{{ query }}</textarea>
+    <br><br>
+    <button type="submit">쿼리 실행</button>
+  </form>
+  <!-- 폼 끝 -->
+
+  <!-- 쿼리 결과 표시 -->
+  {% if query_result %}
+    <!-- SELECT 쿼리인 경우(결과 집합) -->
+    {% if query_result is mapping %}
+      {% if row_count is not none %}
+        <p>총 {{ row_count }} 건</p>
+      {% endif %}
+      <table border="1" cellpadding="6" cellspacing="0" style="border-collapse: collapse;">
+        <thead>
+          <tr>
+            {% for col in query_result.columns %}
+              <th style="background-color: #eee; border: 1px solid #ccc;">{{ col }}</th>
+            {% endfor %}
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in query_result.rows %}
+            <tr>
+              {% for cell in row %}
+                <td style="border: 1px solid #ccc;">{{ cell }}</td>
+              {% endfor %}
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <!-- INSERT/UPDATE/DELETE 등 SELECT 아닌 경우 -->
+      <p>{{ query_result }}</p>
+    {% endif %}
+  {% endif %}
+{% endblock %}

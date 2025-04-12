@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>퀴즈</title>
+    <style>
+        body { font-family: sans-serif; }
+        h1 { color: #007bff; }
+        p { margin-bottom: 15px; }
+        form { margin-top: 20px; }
+        input[type="radio"] { margin-right: 5px; }
+        label { margin-left: 2px; }
+        button { background-color: #28a745; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; margin-top: 15px; }
+        button:hover { background-color: #1e7e34; }
+        #timer { font-size: 0.9em; color: #6c757d; margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+    <h1>퀴즈</h1>
+    <p>문제 {{ question_number }} / {{ total_questions }}</p>
+    <p id="timer">진행 시간: {{ elapsed_time }} 초</p>
+    <p>{{ question }}</p>
+    <form method="POST">
+        {% for option in options %}
+            <input type="radio" name="answer" value="{{ loop.index0 }}" id="option_{{ loop.index0 }}">
+            <label for="option_{{ loop.index0 }}">{{ option }}</label><br>
+        {% endfor %}
+        <button type="submit">다음</button>
+    </form>
+</body>
+</html>

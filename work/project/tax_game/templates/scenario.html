@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block title %}시나리오: {{ scenario.title }}{% endblock %}
+
+{% block head %}
+<script>
+    function updatePreview() {
+        var radios = document.getElementsByName('decision');
+        var preview = document.getElementById('preview');
+        const maxDeduction = {{ scenario.max_deduction }};
+        const partialDeduction = {{ scenario.partial_deduction }};
+        const initialRevenue = {{ scenario.initial_revenue }};
+
+        for (var i = 0; i < radios.length; i++) {
+            if (radios[i].checked) {
+                let expectedNetIncome;
+                if(radios[i].value === "max_expense"){
+                    expectedNetIncome = Math.max(0, initialRevenue - maxDeduction);
+                    preview.innerHTML = `선택: 최대 비용 공제 (${maxDeduction}백만원)<br>→ 예상 순소득: <strong>${expectedNetIncome}백만원</strong>`;
+                } else if (radios[i].value === "partial_expense") {
+                    expectedNetIncome = Math.max(0, initialRevenue - partialDeduction);
+                    preview.innerHTML = `선택: 일부 비용 공제 (${partialDeduction}백만원)<br>→ 예상 순소득: <strong>${expectedNetIncome}백만원</strong>`;
+                }
+                 // 여기에 예상 세금 미리보기 로직 추가 가능
+            }
+        }
+    }
+    document.addEventListener('DOMContentLoaded', function() { updatePreview(); });
+</script>
+{% endblock %}
+
+{% block content %}
+    <h2>{{ scenario.title }}</h2>
+
+    {% if scenario.image_url %}
+        <img src="{{ scenario.image_url }}" alt="시나리오 이미지" style="max-width: 200px; margin-bottom: 20px; display: block; margin-left: auto; margin-right: auto;">
+    {% endif %}
+
+    <p style="line-height: 1.6;">{{ scenario.description }}</p>
+
+    <form method="post">
+        <p style="font-weight: bold; font-size: 1.2em;">매출: {{ scenario.initial_revenue }}백만원</p>
+        <p>어떻게 비용을 처리하시겠습니까?</p>
+
+        <div style="margin-bottom: 15px;">
+            <input type="radio" id="max_expense" name="decision" value="max_expense" onclick="updatePreview()" required>
+            <label for="max_expense">최대 비용 공제 ({{ scenario.max_deduction }}백만원)</label>
+        </div>
+        <div style="margin-bottom: 20px;">
+            <input type="radio" id="partial_expense" name="decision" value="partial_expense" onclick="updatePreview()" required>
+            <label for="partial_expense">일부 비용 공제 ({{ scenario.partial_deduction }}백만원)</label>
+        </div>
+
+        <div id="preview">옵션 선택 시 미리보기가 나타납니다.</div>
+
+        <input type="submit" value="결정하기" class="btn" style="padding: 12px 25px; font-size: 1.1em;">
+    </form>
+    <br>
+    <hr>
+    <a href="{{ url_for('index') }}" class="btn" style="background-color: #6c757d;">다른 시나리오 선택</a> {# 색상 변경 예시 #}
+{% endblock %}

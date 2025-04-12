@@ -1,0 +1,56 @@
+/* 기본 레이아웃 설정 */
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+  }
+  
+  /* 상단 헤더 */
+  header {
+    background: #333;
+    color: #fff;
+    padding: 15px;
+    text-align: center;
+  }
+  
+  /* 네비게이션 메뉴 */
+  nav {
+    background: #444;
+  }
+  .menu {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .menu li {
+    margin: 0;
+  }
+  .menu li a {
+    display: block;
+    padding: 15px 20px;
+    color: #fff;
+    text-decoration: none;
+  }
+  .menu li a:hover {
+    background: #555;
+  }
+  
+  /* 메인 컨텐츠 영역 */
+  main {
+    padding: 20px;
+    min-height: 500px;
+  }
+  
+  /* 하단 푸터 */
+  footer {
+    background: #333;
+    color: #fff;
+    text-align: center;
+    padding: 10px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+  }
+  

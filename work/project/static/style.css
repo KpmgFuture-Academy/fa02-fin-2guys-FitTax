@@ -1,0 +1,187 @@
+/* 구글 폰트 예시 */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap');
+
+/* 기본 리셋 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* body 스타일 */
+body {
+  font-family: 'Noto Sans KR', sans-serif;
+  background-color: #f4f6f8;
+  color: #333;
+  text-align: center;
+  padding: 40px 0;
+}
+
+/* 제목 스타일 */
+h1 {
+  margin-bottom: 30px;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+/* 링크 버튼 (공제 안내 페이지 등) */
+.btn-link {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: 600;
+  padding: 6px 10px;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.btn-link:hover {
+  background-color: #e8e8e8;
+}
+
+/* 카드 컨테이너 (index.html) */
+.card-container {
+  display: flex;
+  gap: 30px;
+  flex-wrap: wrap;
+  justify-content: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* 카드 스타일 (index.html) */
+.card {
+  background-color: #fff;
+  width: 280px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  text-align: center;
+  padding: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+}
+
+.card-content h2 {
+  font-size: 1.2rem;
+  margin-bottom: 20px;
+  color: #007bff;
+}
+
+/* 파일 업로드 관련 스타일 */
+.card input[type="file"] {
+  display: none; /* 숨기고 label로 대체 */
+}
+
+.file-label {
+  display: inline-block;
+  background-color: #007bff;
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+}
+
+.file-label:hover {
+  background-color: #0056b3;
+}
+
+.file-chosen {
+  display: block;
+  margin-bottom: 15px;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.upload-btn {
+  background-color: #28a745;
+  color: #fff;
+  border: none;
+  border-radius: 20px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease;
+}
+
+.upload-btn:hover {
+  background-color: #218838;
+}
+
+/* guide.html 레이아웃 */
+.guide-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  max-width: 1000px;
+  margin: 0 auto;
+  justify-content: center;
+}
+
+.guide-box {
+  flex: 1 1 300px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  padding: 20px;
+  margin-bottom: 20px;
+  min-width: 280px;
+  text-align: left;
+}
+
+.guide-box h2 {
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+  color: #007bff;
+}
+
+.guide-box p {
+  line-height: 1.4;
+  font-size: 0.95rem;
+}
+
+/* 공제율, 한도 정보 표 */
+.info-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 10px;
+  font-size: 0.9rem;
+}
+
+.info-table th, .info-table td {
+  border: 1px solid #ddd;
+  padding: 8px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.info-table th {
+  background-color: #f1f1f1;
+  font-weight: 600;
+}
+
+/* sample_calc.html */
+.calc-container {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.calc-container table {
+  margin-top: 20px;
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.calc-container td {
+  border: 1px solid #ddd;
+  padding: 8px;
+}

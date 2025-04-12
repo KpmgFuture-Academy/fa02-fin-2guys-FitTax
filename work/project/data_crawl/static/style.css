@@ -1,0 +1,112 @@
+/* 전체 배경과 기본 폰트 설정 */
+body {
+  margin: 0;
+  padding: 0;
+  background: linear-gradient(135deg, #ece9e6, #ffffff);
+  font-family: 'Noto Sans', sans-serif;
+  color: #333;
+}
+
+/* 중앙 정렬된 컨테이너 스타일 */
+.container {
+  width: 90%;
+  max-width: 1000px;
+  margin: 50px auto;
+  background: #fff;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(0,0,0,0.1);
+}
+
+/* 제목 스타일 */
+h1 {
+  text-align: center;
+  color: #34495e;
+  margin-bottom: 20px;
+}
+
+h2 {
+  color: #34495e;
+  margin: 40px 0 20px;
+}
+
+/* 폼 요소 스타일 */
+.form-row {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+label {
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+input[type="text"],
+input[type="date"] {
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+input[type="text"]:focus,
+input[type="date"]:focus {
+  border-color: #3498db;
+}
+
+/* 버튼 스타일 */
+button {
+  background: #3498db;
+  color: #fff;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+button:hover {
+  background: #2980b9;
+}
+
+/* 결과 테이블 스타일 */
+.result-table {
+  margin-top: 30px;
+  overflow-x: auto;
+  overflow-y: auto;
+  max-height: 300px; /* 대략 5행 정도의 높이 (필요에 따라 조정) */
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 12px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+/* 링크 버튼 스타일 */
+a.btn {
+  display: inline-block;
+  margin-top: 20px;
+  background: #3498db;
+  color: #fff;
+  padding: 10px 15px;
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background 0.3s;
+}
+
+a.btn:hover {
+  background: #2980b9;
+}
+

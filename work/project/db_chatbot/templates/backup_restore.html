@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>백업 및 복원 관리</title>
+  <a href="/admin">관리자 대시보드로 돌아가기</a>
+  <link rel="stylesheet" href="{{ url_for('static', filename='admin_style.css') }}">
+</head>
+<body>
+  <header>
+    <h1>백업 및 복원 관리</h1>
+  </header>
+  <main>
+    {% if message %}
+      <p>{{ message }}</p>
+    {% endif %}
+    <form method="post">
+      <button type="submit" name="action" value="backup">데이터베이스 백업</button>
+    </form>
+    <br>
+    <form method="post" enctype="multipart/form-data">
+      <label for="backup_file">복원할 백업 파일 선택:</label>
+      <input type="file" name="backup_file" id="backup_file">
+      <button type="submit" name="action" value="restore">데이터베이스 복원</button>
+    </form>
+
+  </main>
+</body>
+</html>

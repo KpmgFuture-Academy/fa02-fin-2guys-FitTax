@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>금융상품 비교 및 선택</title>
+  <style>
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      background-color: #f4f6f8;
+      padding: 40px;
+      text-align: center;
+    }
+    table {
+      width: 90%;
+      margin: 20px auto;
+      border-collapse: collapse;
+      background: white;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 10px;
+    }
+    th {
+      background-color: #f0f2f5;
+    }
+    h1 {
+      color: #2c3e50;
+    }
+    .section {
+      margin: 40px auto;
+      max-width: 1000px;
+    }
+  </style>
+</head>
+<body>
+  <h1>금융상품 비교 및 선택 💼</h1>
+
+  <div class="section">
+    <h2>IRP 상품</h2>
+    <table>
+      <tr>
+        {% for col in irp_list.columns %}<th>{{ col }}</th>{% endfor %}
+      </tr>
+      {% for row in irp_list.values.tolist() %}
+        <tr>{% for val in row %}<td>{{ val }}</td>{% endfor %}</tr>
+      {% endfor %}
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>연금저축펀드</h2>
+    <table>
+      <tr>
+        {% for col in pension_fund.columns %}<th>{{ col }}</th>{% endfor %}
+      </tr>
+      {% for row in pension_fund.values.tolist() %}
+        <tr>{% for val in row %}<td>{{ val }}</td>{% endfor %}</tr>
+      {% endfor %}
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>연금저축생명보험</h2>
+    <table>
+      <tr>
+        {% for col in pension_life.columns %}<th>{{ col }}</th>{% endfor %}
+      </tr>
+      {% for row in pension_life.values.tolist() %}
+        <tr>{% for val in row %}<td>{{ val }}</td>{% endfor %}</tr>
+      {% endfor %}
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>연금저축손해보험</h2>
+    <table>
+      <tr>
+        {% for col in pension_damage.columns %}<th>{{ col }}</th>{% endfor %}
+      </tr>
+      {% for row in pension_damage.values.tolist() %}
+        <tr>{% for val in row %}<td>{{ val }}</td>{% endfor %}</tr>
+      {% endfor %}
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>연금저축신탁</h2>
+    <table>
+      <tr>
+        {% for col in pension_trust.columns %}<th>{{ col }}</th>{% endfor %}
+      </tr>
+      {% for row in pension_trust.values.tolist() %}
+        <tr>{% for val in row %}<td>{{ val }}</td>{% endfor %}</tr>
+      {% endfor %}
+    </table>
+  </div>
+
+  <div class="section">
+    <h2>ISA 상품</h2>
+    <table>
+      <tr>
+        {% for col in isa_list.columns %}<th>{{ col }}</th>{% endfor %}
+      </tr>
+      {% for row in isa_list.values.tolist() %}
+        <tr>{% for val in row %}<td>{{ val }}</td>{% endfor %}</tr>
+      {% endfor %}
+    </table>
+  </div>
+</body>
+</html>

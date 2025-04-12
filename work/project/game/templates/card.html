@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>문제 카드</title>
+    <style>
+        body { font-family: sans-serif; display: flex; flex-direction: column; align-items: center; padding-top: 30px; }
+        .card-container { border: 1px solid #ccc; padding: 20px; width: 400px; background-color: #f8f9fa; }
+        h2 { color: #007bff; }
+        form { margin-top: 20px; }
+        button { background-color: #28a745; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer; }
+        button:hover { background-color: #1e7e34; }
+        .difficulty { font-size: 0.9em; color: #6c757d; margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+    <div class="card-container">
+        <h2>문제 카드 {{ card_id + 1 }}</h2>
+        <div class="difficulty">난이도: {{ card.difficulty }}</div>
+        <p>{{ card.question }}</p>
+        <form method="POST">
+            {% for option in card.options %}
+                <input type="radio" name="answer" value="{{ loop.index0 }}" id="option_{{ loop.index0 }}" required>
+                <label for="option_{{ loop.index0 }}">{{ option }}</label><br>
+            {% endfor %}
+            <button type="submit">답변 제출</button>
+   
+        </form>
+    </div>
+</body>
+</html>

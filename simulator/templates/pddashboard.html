@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>금융상품 대시보드</title>
+  <style>
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      background-color: #f4f6f8;
+      padding: 30px;
+    }
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+      margin-bottom: 40px;
+    }
+    .section {
+      margin-bottom: 60px;
+    }
+    h2 {
+      background-color: #2c7be5;
+      color: white;
+      padding: 10px 20px;
+      border-radius: 8px;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 15px;
+      background: white;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px 10px;
+      text-align: left;
+    }
+    th {
+      background-color: #f0f2f5;
+    }
+    .note {
+      font-size: 0.9em;
+      color: #666;
+      margin-top: 5px;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>📊 금융상품 통합 대시보드</h1>
+
+  {% for title, df in products.items() %}
+  <div class="section">
+    <h2>{{ title }}</h2>
+    <div class="note">※ 상위 10개 상품만 미리보기로 표시됩니다.</div>
+    <table>
+      <thead>
+        <tr>
+          {% for col in df.columns[:8] %}
+            <th>{{ col }}</th>
+          {% endfor %}
+        </tr>
+      </thead>
+      <tbody>
+        {% for row in df.values[:10] %}
+          <tr>
+            {% for val in row[:8] %}
+              <td>{{ val }}</td>
+            {% endfor %}
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% endfor %}
+
+</body>
+</html>

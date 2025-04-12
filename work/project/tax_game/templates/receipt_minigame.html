@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>미니게임: 공제 자료를 찾아라!</title>
+    <style> /* ... 스타일 ... */ </style>
+</head>
+<body>
+    <div id="info-bar"> <span>남은 시간: <span id="timer">{{ time_limit }}</span>초</span> | <span>찾은 자료: <span id="bonus-score">0</span>개</span> </div>
+    <div id="message">잠시 후 게임이 시작됩니다...</div>
+    <div id="game-container"></div>
+    <button id="complete-btn" onclick="submitResult()">결과 확인하기</button>
+    <script>
+        // 요소 가져오기
+        const gameContainer = document.getElementById('game-container');
+        const timerElement = document.getElementById('timer');
+        const bonusScoreElement = document.getElementById('bonus-score');
+        const messageElement = document.getElementById('message');
+        const completeBtn = document.getElementById('complete-btn');
+        // 게임 설정
+        let timeLeft = {{ time_limit }}; let bonusScore = 0; let timerInterval = null;
+        let gameEnded = false; let validItemsFound = 0;
+        const totalValidItems = 5; const totalItemsToDisplay = 15;
+
+        // --- !!! 사용 가능한 이미지 파일 이름 목록 (static/images 폴더 기준) !!! ---
+        const validDocFiles = [ 'valid_withholding.png', 'valid_vat_form.png', 'valid_income_tax_form.png', 'valid_permit.png', 'valid_contract.png', 'valid_simple_receipt.png', 'valid_card_statement.png', 'valid_tax_invoice.png' ];
+        const invalidItemFiles = [ 'invalid_board_minutes.png', 'invalid_corp_tax_form.png', 'invalid_health_insurance.png', 'invalid_last_year_tax.png', 'invalid_movie_ticket.png', 'invalid_business_card.png', 'invalid_memo.png', 'invalid_drivers_license.png', 'invalid_resident_reg.png', 'invalid_family_meal.png', 'invalid_hobby.png', 'invalid_personal_event.png', 'invalid_shareholders.png', 'invalid_corp_register.png' ];
+        // ----------------------------------------------------------------------
+
+        // 게임 시작 함수
+        function startGame() { /* ... 초기화 로직 ... */ setTimeout(() => { spawnItems(); startTimer(); }, 100); }
+        // 타이머 시작 함수
+        function startTimer() { /* ... 타이머 로직 ... */ }
+        // 아이템 생성 및 배치 함수 (랜덤 이미지 선택 포함)
+        function spawnItems() { /* ... 아이템 생성, 랜덤 선택, 배치 로직 ... */ }
+        // 아이템 클릭 처리 함수
+        function handleItemClick(event) { /* ... 클릭 처리, 점수/개수 업데이트 로직 ... */ }
+        // 게임 종료 처리 함수
+        function endGame(endMessage) { /* ... 종료 처리 로직 ... */ }
+        // 결과 제출 함수 (올바른 엔드포인트 사용)
+        function submitResult() {
+             console.log(`submitResult: 결과 제출 시도 - 점수 ${bonusScore}`);
+             completeBtn.disabled = true; completeBtn.textContent = "결과 확인 중...";
+             // --- !!! 엔드포인트 이름 확인: submit_practice_result !!! ---
+             fetch("{{ url_for('submit_practice_result') }}", {
+                 method: 'POST', headers: {'Content-Type': 'application/json',},
+                 body: JSON.stringify({ bonus: bonusScore })
+             })
+             .then(response => { /* ... 응답 처리 ... */ })
+             .catch(error => { /* ... 오류 처리 ... */ });
+         }
+        // 페이지 로드 시 게임 시작
+        window.onload = startGame;
+    </script>
+</body>
+</html>

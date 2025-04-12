@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>Strong Financial Partner</title>
+  <!-- 부트스트랩 CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <!-- 커스텀 스타일 -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+  <!-- 상단 헤더 영역 -->
+  <header class="bg-white py-3 border-bottom">
+    <div class="container">
+      <h1 class="fs-4 fw-bold text-primary">STRONG FINANCIAL PARTNER</h1>
+    </div>
+  </header>
+
+  <!-- 메인 배너 영역 -->
+  <section class="bg-light py-5">
+    <div class="container">
+      <div class="row align-items-center">
+        <!-- 왼쪽 텍스트 -->
+        <div class="col-md-6 mb-4 mb-md-0">
+          <h1 class="fw-bold">Thanks, AI! Start My Dream</h1>
+          <p class="text-muted mb-4">AI 어시스턴트가 당신과 함께 합니다!</p>
+          <a href="#" class="btn btn-primary">kpmg로 이동하기 ----test</a>
+        </div>
+        <!-- 오른쪽 이미지(혹은 아이콘) -->
+        <div class="col-md-6 text-center">
+          <img src="{{ url_for('static', filename='images/left.png') }}" alt="모바일창구 이미지" class="img-fluid" style="max-width: 300px;" /> 
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 주요 기능/메뉴 영역 -->
+  <section class="py-5">
+    <div class="container">
+      <div class="row g-3">
+        <!-- 카드 1: 창업필수 세무 상식 -->
+        <div class="col-6 col-md-3">
+          <div class="card text-center h-100">
+            <div class="card-body">
+              <div class="mb-3">
+                <!-- 아이콘(또는 이미지) -->
+                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="#6f42c1" class="bi bi-piggy-bank" viewBox="0 0 16 16">
+                  <path d="M8 1a5 5 0 0 0-4.58 2.5H2.5A1.5 1.5 0 0 0 1 5v2a1 1 0 0 0 1 1h.03c.24.86.78 1.617 1.54 2.135-.01.122-.03.24-.03.365 0 .58.49 1.142.975 1.457C4.66 12.46 5.567 13 8 13s3.34-.54 3.485-.543c.485-.315.975-.876.975-1.457 0-.125-.02-.243-.03-.365.76-.518 1.3-1.275 1.54-2.135H14a1 1 0 0 0 1-1V5a1.5 1.5 0 0 0-1.5-1.5h-.92A5 5 0 0 0 8 1zm3 7a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+                </svg>
+              </div>
+              <h5 class="card-title mb-2"><a href="{{ url_for('tax_bp.show_tax') }}">창업필수 세무 상식</a></h5>
+              <p class="card-text text-muted">성공적인 창업을 위한 첫걸음</p>
+            </div>
+          </div>
+        </div>
+        <!-- 카드 2: 청년 정부지원사업 -->
+        <div class="col-6 col-md-3">
+          <div class="card text-center h-100">
+            <div class="card-body">
+              <div class="mb-3">
+                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="#6f42c1" class="bi bi-bank" viewBox="0 0 16 16">
+                  <path d="m8 .95.53.274 6.5 3.25.47.235v1.29l-.559.28A1.99 1.99 0 0 1 14 7v5.5H2V7c0-.615-.293-1.185-.941-1.721L.5 5v-1.29l.47-.235 6.5-3.25L8 .95zm0 1.1-5.5 2.75V5h11V4.8L8 2.05z"/>
+                  <path d="M2 13.5a.5.5 0 0 1 .5-.5h3v-2a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 .5.5v2h3a.5.5 0 0 1 .5.5v.5H2v-.5z"/>
+                </svg>
+              </div>
+              <h5 class="card-title mb-2">청년 정부지원사업</h5>
+              <p class="card-text text-muted">정부의 든든한 지원이 만난다면, 불가능은 없어요</p>
+            </div>
+          </div>
+        </div>
+        <!-- 카드 3: 창업후 필수 세무상식(개인사업자) -->
+        <div class="col-6 col-md-3">
+          <div class="card text-center h-100">
+            <div class="card-body">
+              <div class="mb-3">
+                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="#6f42c1" class="bi bi-file-earmark-text" viewBox="0 0 16 16">
+                  <path d="M5 10h6v1H5zm0-2h6v1H5zm0-2h4v1H5z"/>
+                  <path d="M14 4.5V14a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2h4.5L14 4.5zm-3-.5-3-3V4h3z"/>
+                </svg>
+              </div>
+              <h5 class="card-title mb-2">창업후 필수 세무상식(개인사업자)</h5>
+              <p class="card-text text-muted">안정적인 사업 운영을 위한 필수 가이드</p>
+            </div>
+          </div>
+        </div>
+        <!-- 카드 4: 쫄지마 세금! -->
+        <div class="col-6 col-md-3">
+          <div class="card text-center h-100">
+            <div class="card-body">
+              <div class="mb-3">
+                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="#6f42c1" class="bi bi-briefcase" viewBox="0 0 16 16">
+                  <path d="M6.5 0a.5.5 0 0 0-.5.5V2h4V.5a.5.5 0 0 0-.5-.5h-3z"/>
+                  <path d="M2.5 3A1.5 1.5 0 0 0 1 4.5v1.563A2 2 0 0 0 2 8v4.5A1.5 1.5 0 0 0 3.5 14h9a1.5 1.5 0 0 0 1.5-1.5V8a2 2 0 0 0 1-1.937V4.5A1.5 1.5 0 0 0 12.5 3h-10z"/>
+                </svg>
+              </div>
+              <h5 class="card-title mb-2">쫄지마 세금!</h5>
+              <p class="card-text text-muted">가상 세계에서 펼쳐지는 세금 마스터 도전기!</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 추가 기능 카드 영역 -->
+      <div class="row g-3 mt-4">
+        <div class="col-6 col-md-3">
+          <div class="card text-center h-100">
+            <div class="card-body">
+              <div class="mb-3">
+                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="#0d6efd" class="bi bi-laptop" viewBox="0 0 16 16">
+                  <path d="M2.5 3a.5.5 0 0 0-.5.5V11h12V3.5a.5.5 0 0 0-.5-.5h-11z"/>
+                  <path d="M0 13a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2H0z"/>
+                </svg>
+              </div>
+              <h5 class="card-title mb-2">챗봇</h5>
+              <p class="card-text text-muted">세무 관련 질문을 해결해 드립니다.</p>
+              <a href="{{ url_for('chatbot_bp.chatbot_index') }}" class="btn btn-success">챗봇 시작하기</a>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3">
+          <div class="card text-center h-100">
+            <div class="card-body">
+              <div class="mb-3">
+                <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="#0d6efd" class="bi bi-phone-fill" viewBox="0 0 16 16">
+                  <path fill-rule="evenodd" d="M1 2a1 1 0 0 1 1-1h2.757a1 1 0 0 1 .894.553l.724 1.447A1 1 0 0 1 6.276 4H9.5a.5.5 0 0 1 0 1H6.276a1 1 0 0 1-.894-.553L4.658 2.553A1 1 0 0 1 3.764 2H2v12h12V5.236a1 1 0 0 1 .553-.894l1.447-.724A1 1 0 0 1 16 3.757V14a1 1 0 0 1-1 1H2a1 1 0 0 1-1-1V2z"/>
+                </svg>
+              </div>
+              <h5 class="card-title mb-2">퀴즈</h5>
+              <p class="card-text text-muted">세무 지식을 재미있게 테스트 해보세요.</p>
+              <a href="{{ url_for('quiz_bp.quiz_index') }}" class="btn btn-warning">퀴즈 풀기</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 부트스트랩 JS (필요 시) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

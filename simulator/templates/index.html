@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <title>절세 시뮬레이션 - 사용자 입력</title>
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #f4f6f8;
+            color: #333;
+            padding: 60px 20px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 2.2em;
+            margin-bottom: 30px;
+        }
+        form {
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            max-width: 600px;
+            margin: 0 auto;
+            box-shadow: 0 0 10px rgba(0,0,0,0.05);
+            text-align: left;
+        }
+        label {
+            display: block;
+            margin: 15px 0 5px;
+            font-weight: bold;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
+        button {
+            margin-top: 25px;
+            background-color: #2c7be5;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            font-size: 1em;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #1b5fc1;
+        }
+        small {
+            display: block;
+            margin-top: 5px;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+    <h1>절세 시뮬레이터 📊</h1>
+    <form method="POST" action="/dashboard">
+        <label for="age">나이</label>
+        <input type="number" id="age" name="age" required>
+
+        <label for="income">연소득 (만원)</label>
+        <input type="number" id="income" name="income" required>
+
+        <label for="income_type">소득 유형</label>
+        <select id="income_type" name="income_type">
+            <option value="사업소득자">사업소득자</option>
+            <option value="근로소득자">근로소득자</option>
+        </select>
+
+        <label for="strategy">전략 선택</label>
+        <select id="strategy" name="strategy">
+            <option value="maximize_tax_saving">세액 절감 극대화</option>
+            <option value="stable_growth">장기적 안정성 중심</option>
+            <option value="hybrid">절감 + 안정성 균형 (Hybrid)</option>
+        </select>
+    
+        <label for="extra_budget">월 여유 투자금액 (만원)</label>
+        <input type="number" id="extra_budget" name="extra_budget" required>
+        <label for="yellow_umbrella">노란우산공제 월 납입액 (만원)</label>
+        <input type="number" id="yellow_umbrella" name="yellow_umbrella" required>
+
+        <label for="irp">IRP 월 납입액 (만원)</label>
+        <input type="number" id="irp" name="irp" required>
+
+        <label for="pension">연금저축 월 납입액 (만원)</label>
+        <input type="number" id="pension" name="pension" required>
+
+        <label for="isa_joined">ISA 가입 여부</label>
+        <select id="isa_joined" name="isa_joined">
+            <option value="true">가입</option>
+            <option value="false">미가입</option>
+        </select>
+
+        <button type="submit">시뮬레이션 돌려보기</button>
+        <small>* 모든 금액은 "만원 단위"로 입력해주세요.</small>
+    </form>
+</body>
+</html>
