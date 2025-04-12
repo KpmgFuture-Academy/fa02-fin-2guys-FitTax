@@ -1,6 +1,3 @@
-<p align="center">
-  <img src="logo.png" width="200"/>
-</p>
 
 # FIT TAX : 절세금융상품 시뮬레이션 플랫폼
 
