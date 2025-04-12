@@ -68,7 +68,7 @@ graph LR
 
 ## 👥 Team Members
 
-| !([member1](https://github.com/user-attachments/assets/b09a374a-05ed-42d1-91a5-34fcd73e81eb)|
+| ![member1](https://github.com/user-attachments/assets/c31741c1-3352-49ab-b7bd-5d54c76a4642)|
 | ![감자도리](https://github.com/user-attachments/assets/2c685ee4-730b-4a0b-a155-ddd4121f8ccf) |
 |:-----------------------:|:-----------------------:|
 | 변성용 (서비스 기획 / ) | 노호현 (서비스 기획/ )|
