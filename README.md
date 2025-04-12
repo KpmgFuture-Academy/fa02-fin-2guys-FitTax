@@ -79,7 +79,7 @@ graph LR
       카드사용 내역 자동화
     </td>
     <td align="center">
-      <img src="https://github.com/user-attachments/assets/2c685ee4-730b-4a0b-a155-ddd4121f8ccf" width="120"/><br/>
+      <img src="https://github.com/user-attachments/assets/2c685ee4-730b-4a0b-a155-ddd4121f8ccf" width="180"/><br/>
       <strong>노호현</strong><br/>
       서비스 기획<br/>
       블로그 자동화<br/>
