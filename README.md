@@ -1,6 +1,4 @@
-<p align="center">
-  <img src="logo.png" width="200"/>
-</p>
+
 
 # FIT TAX : 절세금융상품 시뮬레이션 플랫폼
 ![Fiatax](https://github.com/user-attachments/assets/67ddc9a1-b795-482d-9183-77b8a9a32a2b)
