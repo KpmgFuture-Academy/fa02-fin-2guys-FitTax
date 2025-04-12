@@ -68,10 +68,11 @@ graph LR
 
 ## 👥 Team Members
 
-| ![member1](member1.png) | ![Uploading 감자도리.PNG…]() |
+| ![member1](member1.png) | ![감자도리](https://github.com/user-attachments/assets/2c685ee4-730b-4a0b-a155-ddd4121f8ccf) |
 |:-----------------------:|:-----------------------:|
 | 변성용 (기획 / 데이터 분석) | 노호현 (서비스/기술 기획) 
 
+![Uploading 감자도리.PNG…]()
 
 > 팀원 사진은 `member1.png`, `member2.png`, `member3.png`처럼 파일명을 맞춰 업로드해 주세요.
 
