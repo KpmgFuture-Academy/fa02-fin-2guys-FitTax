@@ -87,7 +87,7 @@ graph LR
 </table>
 
 ## 🧪 시연 영상
-- 하단 url에서 시연 영상을 다운해주세요.
+- 하단 url에서 시연 영상 확인 가능합니다. 
 https://drive.google.com/file/d/1CO_F04Qxivms0haJ9tJ_jVRh1H7J_TbQ/view?usp=drive_link
 
 ---
