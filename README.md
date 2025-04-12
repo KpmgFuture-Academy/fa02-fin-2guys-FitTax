@@ -67,8 +67,6 @@ graph LR
 
 ## 👥 Team Members
 
-## 👥 Team Members
-
 <table>
   <tr>
     <td align="center">
@@ -88,8 +86,9 @@ graph LR
   </tr>
 </table>
 
-## 🧪 시연 예시
-
+## 🧪 시연 영상
+- 하단 url에서 시연 영상을 다운해주세요.
+https://drive.google.com/file/d/1CO_F04Qxivms0haJ9tJ_jVRh1H7J_TbQ/view?usp=drive_link
 
 ---
 
