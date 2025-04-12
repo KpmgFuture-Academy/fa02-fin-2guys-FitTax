@@ -67,24 +67,28 @@ graph LR
 
 ## 👥 Team Members
 
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/c31741c1-3352-49ab-b7bd-5d54c76a4642" width="300"/>
-</p>
+## 👥 Team Members
 
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/2c685ee4-730b-4a0b-a155-ddd4121f8ccf" width="300"/>
-</p>
-|:-----------------------:|:-----------------------:|
-| 변성용 (서비스 기획 / ) | 노호현 (서비스 기획/ )|
-| 절세 시뮬레이터         |  블로그 자동화   |
-| 카드사용 내역 자동화    |   크롤링 자동화    |
----
+<table>
+  <tr>
+    <td align="center">
+      <img src="https://github.com/user-attachments/assets/c31741c1-3352-49ab-b7bd-5d54c76a4642" width="180"/><br/>
+      <strong>변성용</strong><br/>
+      서비스 기획<br/>
+      절세 시뮬레이터<br/>
+      카드사용 내역 자동화
+    </td>
+    <td align="center">
+      <img src="https://github.com/user-attachments/assets/2c685ee4-730b-4a0b-a155-ddd4121f8ccf" width="120"/><br/>
+      <strong>노호현</strong><br/>
+      서비스 기획<br/>
+      블로그 자동화<br/>
+      크롤링 자동화
+    </td>
+  </tr>
+</table>
 
 ## 🧪 시연 예시
-<video width="600" controls>
-  <source src="simulator.mp4" type="video/mp4">
-  브라우저가 비디오 태그를 지원하지 않습니다.
-</video>
 
 
 ---
