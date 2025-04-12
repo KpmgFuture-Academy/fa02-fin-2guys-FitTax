@@ -4,8 +4,8 @@
 </p>
 
 # FIT TAX
+![Fiatax](https://github.com/user-attachments/assets/67ddc9a1-b795-482d-9183-77b8a9a32a2b)
 
-![Uploading image.png…]()
 
 
 절세금융상품 시뮬레이션 플랫폼  
